@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "/Users/endoseiya/.dotnet/store/|arch|/|tfm|",
+      "/Users/endoseiya/.nuget/packages"
+    ]
+  }
+}

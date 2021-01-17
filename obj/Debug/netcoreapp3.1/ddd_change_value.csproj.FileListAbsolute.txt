@@ -1,0 +1,12 @@
+/Users/endoseiya/workspace_me/dotnet/ddd_change_value/bin/Debug/netcoreapp3.1/ddd_change_value.deps.json
+/Users/endoseiya/workspace_me/dotnet/ddd_change_value/bin/Debug/netcoreapp3.1/ddd_change_value.runtimeconfig.json
+/Users/endoseiya/workspace_me/dotnet/ddd_change_value/bin/Debug/netcoreapp3.1/ddd_change_value.runtimeconfig.dev.json
+/Users/endoseiya/workspace_me/dotnet/ddd_change_value/bin/Debug/netcoreapp3.1/ddd_change_value.dll
+/Users/endoseiya/workspace_me/dotnet/ddd_change_value/bin/Debug/netcoreapp3.1/ddd_change_value.pdb
+/Users/endoseiya/workspace_me/dotnet/ddd_change_value/obj/Debug/netcoreapp3.1/ddd_change_value.csprojAssemblyReference.cache
+/Users/endoseiya/workspace_me/dotnet/ddd_change_value/obj/Debug/netcoreapp3.1/ddd_change_value.AssemblyInfoInputs.cache
+/Users/endoseiya/workspace_me/dotnet/ddd_change_value/obj/Debug/netcoreapp3.1/ddd_change_value.AssemblyInfo.cs
+/Users/endoseiya/workspace_me/dotnet/ddd_change_value/obj/Debug/netcoreapp3.1/ddd_change_value.csproj.CoreCompileInputs.cache
+/Users/endoseiya/workspace_me/dotnet/ddd_change_value/obj/Debug/netcoreapp3.1/ddd_change_value.dll
+/Users/endoseiya/workspace_me/dotnet/ddd_change_value/obj/Debug/netcoreapp3.1/ddd_change_value.pdb
+/Users/endoseiya/workspace_me/dotnet/ddd_change_value/obj/Debug/netcoreapp3.1/ddd_change_value.genruntimeconfig.cache
