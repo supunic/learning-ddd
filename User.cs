@@ -2,22 +2,45 @@
 
 namespace ddd_value_object
 {
+    // エンティティ
     class User
     {
         public static void Main()
         {
             //
         }
-        public UserId Id { get; set; }
-        public UserName Name { get; set; }
+        private readonly UserId id;
+        private UserName name;
 
-        public User(UserId Id, UserName Name)
+        public User(UserId id, UserName name)
         {
-            if (Id == null) throw new ArgumentNullException(nameof(Id));
-            if (Name == null) throw new ArgumentNullException(nameof(Name));
+            this.id = id;
+            ChangeUserName(name);
+        }
 
-            this.Id = Id;
-            this.Name = Name;
+        public void ChangeUserName(UserName name)
+        {
+            this.name = name;
+        }
+
+        public bool Equals(User other)
+        {
+            if (ReferenceEquals(null, other)) return false;
+            if (ReferenceEquals(this, other)) return true;
+            return Equals(id, other.id); // 比較はid同士で行う
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != this.GetType()) return false;
+            return Equals((User) obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return (id != null ? id.GetHashCode() : 0);
         }
     }
 }
