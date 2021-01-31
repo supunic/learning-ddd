@@ -23,12 +23,14 @@ public class UserApplicationService
         userRepository.Save(user);
     }
 
-    public User Get(string userId)
+    public UserData Get(string userId)
     {
         var targetId = new UserId(userId);
         var user = userRepository.Find(targetId);
+
+        var userData = new UserData(user.Id.Value, user.Name.Value);
         
-        return user;
+        return userData;
     }
 
     public void Update(UserUpdateCommand command)
