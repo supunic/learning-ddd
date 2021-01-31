@@ -11,7 +11,7 @@ public class UserRegisterService
         this.userService = userService;
     }
     
-    public void Register(string name)
+    public void Handle(string name)
     {
         var user = new User(new UserName(name));
 

@@ -9,7 +9,7 @@ public class UserDeleteService
         this.userRepository = userRepository;
     }
 
-    public void Delete(UserDeleteCommand command)
+    public void Handle(UserDeleteCommand command)
     {
         var targetId = new UserId(command.Id);
         var user = userRepository.Find(targetId);

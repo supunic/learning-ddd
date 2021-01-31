@@ -11,7 +11,7 @@ public class UserUpdateInfoService
         this.userService = userService;
     }
 
-    public void Update(UserUpdateCommand command)
+    public void Handle(UserUpdateCommand command)
     {
         var targetId = new UserId(command.Id);
         var user = userRepository.Find(targetId);

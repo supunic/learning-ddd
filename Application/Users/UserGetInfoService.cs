@@ -9,7 +9,7 @@ public class UserGetInfoService
         this.userRepository = userRepository;
     }
 
-    public UserData Get(string userId)
+    public UserData Handle(string userId)
     {
         var targetId = new UserId(userId);
         var user = userRepository.Find(targetId);
