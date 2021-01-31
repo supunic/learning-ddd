@@ -21,11 +21,19 @@ public class User
 
     public UserId Id { get; }
     public UserName Name { get; private set; }
+    public UserMailAddress MailAddress { get; private set; }
 
     public void ChangeName(UserName name)
     {
         if (name == null) throw new ArgumentNullException(nameof(name));
 
         Name = name;
+    }
+
+    public void ChangeMailAddress(UserMailAddress mailAddress)
+    {
+        if (mailAddress == null) throw new ArgumentNullException(nameof(mailAddress));
+
+        MailAddress = mailAddress;
     }
 }
