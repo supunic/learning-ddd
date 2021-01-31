@@ -1,5 +1,7 @@
 public interface IUserRepository
 {
+    User Find(UserId id);
+    User Find(UserName name);
     void Save(User user);
-    void Find(UserName name);
+    void Delete(User user);
 }

@@ -2,28 +2,15 @@ using System;
 
 class Program
 {
-    private IUserRepository userRepository;
+    private readonly UserApplicationService userApplicationService;
 
-    public Program(IUserRepository userRepository)
+    public Program(UserApplicationService userApplicationService)
     {
-        this.userRepository = userRepository;
+        this.userApplicationService = userApplicationService;
     }
 
     public void CreateUser(string userName)
     {
-        var user = new User(
-            new UserId("hogehoge"),
-            new UserName(userName)
-        );
-
-        var userService = new UserService(userRepository);
-        
-        if (userService.Exists(user))
-        {
-            throw new Exception($"{userName}は既に存在しています");
-        }
-        
-        userRepository.Save(user);
+        userApplicationService.Register(userName);
     }
 }
-

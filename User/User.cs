@@ -1,36 +1,31 @@
-﻿public class User
+﻿using System;
+
+public class User
 {
-    public readonly UserId id;
-    public UserName name;
+    public User(UserName name)
+    {
+        if (name == null) throw new ArgumentNullException(nameof(name));
+
+        Id = new UserId(Guid.NewGuid().ToString());
+        Name = name;
+    }
 
     public User(UserId id, UserName name)
     {
-        this.id = id;
-        ChangeUserName(name);
+        if (id == null) throw new ArgumentNullException(nameof(id));
+        if (name == null) throw new ArgumentNullException(nameof(name));
+
+        Id = id;
+        Name = name;
     }
 
-    public void ChangeUserName(UserName name)
-    {
-        this.name = name;
-    }
+    public UserId Id { get; }
+    public UserName Name { get; private set; }
 
-    public bool Equals(User other)
+    public void ChangeName(UserName name)
     {
-        if (ReferenceEquals(null, other)) return false;
-        if (ReferenceEquals(this, other)) return true;
-        return Equals(id, other.id); // 比較はid同士で行う
-    }
+        if (name == null) throw new ArgumentNullException(nameof(name));
 
-    public override bool Equals(object obj)
-    {
-        if (ReferenceEquals(null, obj)) return false;
-        if (ReferenceEquals(this, obj)) return true;
-        if (obj.GetType() != this.GetType()) return false;
-        return Equals((User) obj);
-    }
-
-    public override int GetHashCode()
-    {
-        return (id != null ? id.GetHashCode() : 0);
+        Name = name;
     }
 }

@@ -6,9 +6,11 @@ public class UserService
     {
         this.userRepository = userRepository;
     }
+
     public bool Exists(User user)
     {
-        userRepository.Find(user.name);
-        return false;
+        var duplicatedUser = userRepository.Find(user.Name);
+
+        return duplicatedUser != null;
     }
 }

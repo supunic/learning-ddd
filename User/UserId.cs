@@ -2,12 +2,12 @@
 
 public class UserId
 {
-    private readonly string value;
-
     public UserId(string value)
     {
-        if (value == null) throw new ArgumentNullException(nameof(value));
+        if (string.IsNullOrEmpty(value)) throw new ArgumentException("valueがnullまたは空文字です。");
 
-        this.value = value;
+        Value = value;
     }
+
+    public string Value { get; }
 }
