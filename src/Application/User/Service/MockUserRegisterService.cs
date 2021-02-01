@@ -1,5 +1,3 @@
-using System;
-
 public class MockUserRegisterService: IUserRegisterService
 {
     private readonly IUserRepository userRepository;

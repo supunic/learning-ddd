@@ -1,6 +1,6 @@
 using System;
 
-public class UserUpdateInfoService
+public class UserUpdateInfoService: IUserUpdateInfoService
 {
     private readonly IUserRepository userRepository;
     private readonly UserService userService;
@@ -11,20 +11,18 @@ public class UserUpdateInfoService
         this.userService = userService;
     }
 
-    public void Handle(UserUpdateCommand command)
+    public void Handle(UserUpdateInfoCommand command)
     {
-        var targetId = new UserId(command.Id);
-        var user = userRepository.Find(targetId);
+        var user = userRepository.Find(new UserId(command.Id));
+
         if (user == null)
         {
             throw new Exception("ユーザが存在しません。");
         }
 
-        var name = command.Name;
-        if (name != null)
+        if (command.Name != null)
         {
-            var newUserName = new UserName(name);
-            user.ChangeName(newUserName);
+            user.ChangeName(new UserName(command.Name));
 
             if (userService.Exists(user))
             {
@@ -32,11 +30,9 @@ public class UserUpdateInfoService
             }
         }
 
-        var mailAddress = command.MailAddress;
-        if (mailAddress != null)
+        if (command.MailAddress != null)
         {
-            var newUserMailAddress = new UserMailAddress(mailAddress);
-            user.ChangeMailAddress(newUserMailAddress);
+            user.ChangeMailAddress(new UserMailAddress(command.MailAddress));
         }
 
         userRepository.Save(user);

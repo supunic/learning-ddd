@@ -1,6 +1,6 @@
 using System;
 
-public class UserDeleteService
+public class UserDeleteService: IUserDeleteService
 {
     private readonly IUserRepository userRepository;
     
@@ -11,8 +11,7 @@ public class UserDeleteService
 
     public void Handle(UserDeleteCommand command)
     {
-        var targetId = new UserId(command.Id);
-        var user = userRepository.Find(targetId);
+        var user = userRepository.Find(new UserId(command.Id));
 
         if (user == null)
         {

@@ -1,6 +1,6 @@
-public class UserUpdateCommand
+public class UserUpdateInfoCommand
 {
-    public UserUpdateCommand(string id)
+    public UserUpdateInfoCommand(string id)
     {
         Id = id;
     }
