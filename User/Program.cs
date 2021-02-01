@@ -3,6 +3,7 @@ using System;
 class Program
 {
     private readonly UserApplicationService userApplicationService;
+    private readonly IUserRegisterService userRegisterService;
 
     public Program(UserApplicationService userApplicationService)
     {
@@ -11,7 +12,8 @@ class Program
 
     public void CreateUser(string userName)
     {
-        userApplicationService.Register(userName);
+        var command = new UserRegisterCommand(userName);
+        userRegisterService.Handle(command);
     }
 
     public void UpdateUserName(string userId)

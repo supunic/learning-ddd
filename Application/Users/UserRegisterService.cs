@@ -1,6 +1,6 @@
 using System;
 
-public class UserRegisterService
+public class UserRegisterService: IUserRegisterService
 {
     private readonly IUserRepository userRepository;
     private readonly UserService userService;
@@ -11,9 +11,9 @@ public class UserRegisterService
         this.userService = userService;
     }
     
-    public void Handle(string name)
+    public void Handle(UserRegisterCommand command)
     {
-        var user = new User(new UserName(name));
+        var user = new User(new UserName(command.Name));
 
         if (userService.Exists(user))
         {
