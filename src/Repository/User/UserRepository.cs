@@ -8,13 +8,13 @@ public class UserRepository: IUserRepository
     public User Find(UserName userName)
     {
         // 本来はSQL処理
-        return new User(new UserName("findByUserName"));
+        return new User(new UserId("findByUserName"), userName);
     }
 
     public User Find(UserId userId)
     {
         // 本来はSQL処理
-        return new User(new UserName("findByUserId"));
+        return new User(userId, new UserName("findByUserId"));
     }
 
     public void Delete(User user)
