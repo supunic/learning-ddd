@@ -2,14 +2,6 @@
 
 public class User
 {
-    public User(UserName name)
-    {
-        if (name == null) throw new ArgumentNullException(nameof(name));
-
-        Id = new UserId(Guid.NewGuid().ToString());
-        Name = name;
-    }
-
     public User(UserId id, UserName name)
     {
         if (id == null) throw new ArgumentNullException(nameof(id));
