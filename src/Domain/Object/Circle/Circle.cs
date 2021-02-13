@@ -19,5 +19,22 @@ public class Circle
     public CircleId Id { get; }
     public CircleName Name { get; private set; }
     public User Owner { get; private set; }
-    public List<User> Members { get; private set; }
+    private List<User> Members;
+
+    public bool IsFull()
+    {
+        return Members.Count >= 29;
+    }
+
+    public void Join(User user)
+    {
+        if (user == null) throw new ArgumentNullException(nameof(user));
+
+        if (IsFull())
+        {
+            throw new Exception("サークルが規定人数に達しています。");
+        }
+
+        Members.Add(user);
+    }
 }

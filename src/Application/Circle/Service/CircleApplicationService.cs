@@ -69,12 +69,7 @@ public class CircleApplicationService
                 throw new Exception("サークルが見つかりませんでした。");
             }
 
-            if (circle.Members.Count >= 29)
-            {
-                throw new Exception("サークルが規定人数以上です。");
-            }
-
-            circle.Members.Add(member);
+            circle.Join(member);
             circleRepository.Save(circle);
 
             transaction.Complete();
@@ -109,9 +104,9 @@ public class CircleApplicationService
                 throw new Exception("サークルが見つかりませんでした。");
             }
 
-            if (circle.Members.Count >= 29)
+            if (circle.IsFull())
             {
-                throw new Exception("サークルが規定人数以上です。");
+                throw new Exception("サークルが規定人数に達しています。");
             }
 
             var circleInvitation = new CircleInvitation(circle, fromUser, invitedUser);
