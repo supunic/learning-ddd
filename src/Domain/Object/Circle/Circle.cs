@@ -23,7 +23,12 @@ public class Circle
 
     public bool IsFull()
     {
-        return Members.Count >= 29;
+        return MembersCount() >= 29;
+    }
+
+    public int MembersCount()
+    {
+        return Members.Count + 1;
     }
 
     public void Join(User user)
