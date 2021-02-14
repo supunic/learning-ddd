@@ -19,6 +19,7 @@ public class Circle
     public CircleName Name { get; private set; }
     public User Owner { get; private set; }
     public CircleMembers Members;
+    public DateTime Created;
 
     public void Join(User user)
     {

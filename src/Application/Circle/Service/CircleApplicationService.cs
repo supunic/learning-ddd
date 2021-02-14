@@ -1,5 +1,7 @@
 using System;
 using System.Transactions;
+using System.Collections.Generic;
+using System.Linq;
 
 public class CircleApplicationService
 {
@@ -8,6 +10,7 @@ public class CircleApplicationService
     private readonly ICircleInvitationRepository circleInvitationRepository;
     private readonly CircleService circleService;
     private readonly IUserRepository userRepository;
+    private readonly DateTime now;
     
     public CircleApplicationService(
         ICircleFactory circleFactory,
@@ -127,5 +130,18 @@ public class CircleApplicationService
 
             transaction.Complete();
         }
+    }
+
+    public List<Circle> GetRecommend()
+    {
+        var circles             = circleRepository.FindAll();
+        var recommendCircleSpec = new CircleRecommendSpecification(now);
+        var recommendCircles    = circles
+            .Where(recommendCircleSpec.IsSatisfiedBy)
+            .Take(10)
+            .ToList();
+
+        // return new CircleGetRecommendResult(recommendCircles);
+        return recommendCircles; // 暫定的にList<Circle>のままレスポンス
     }
 }
