@@ -11,8 +11,9 @@ public class UserGetInfoService: IUserGetInfoService
 
     public UserData Handle(UserGetInfoCommand command)
     {
-        var user = userRepository.Find(new UserId(command.Id));
+        var user          = userRepository.Find(new UserId(command.Id));
+        var userDataModel = user.ModelBuild(new UserDataModelBuilder());
 
-        return new UserData(user.Id.Value, user.Name.Value);
+        return new UserData(userDataModel.Id.Value, userDataModel.Name.Value);
     }
 }

@@ -11,9 +11,9 @@ public class User
         Name = name;
     }
 
-    public UserId Id { get; }
-    public UserName Name { get; private set; }
-    public UserMailAddress MailAddress { get; private set; }
+    private readonly UserId Id;
+    private UserName Name;
+    private UserMailAddress MailAddress;
 
     public void ChangeName(UserName name)
     {
@@ -27,5 +27,19 @@ public class User
         if (mailAddress == null) throw new ArgumentNullException(nameof(mailAddress));
 
         MailAddress = mailAddress;
+    }
+
+    // 以下はUserドメインの振る舞いとは異なるが、Userクラスの内部情報を隠蔽するために作成
+    public UserDataModel ModelBuild(IUserNotification userDataModelBuilder) // UserDataModelをbuildして返す
+    {
+        Notify(userDataModelBuilder); // userDataModelBuilderにuserのidとnameが入る
+
+        return userDataModelBuilder.Build();
+    }
+
+    private void Notify(IUserNotification note) // IdとNameがUser内部からしかアクセスできないためここで通知
+    {
+        note.Id(Id);
+        note.Name(Name);
     }
 }

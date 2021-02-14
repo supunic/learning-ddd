@@ -10,7 +10,11 @@ class InMemoryUserRepository: IUserRepository
 
     public User Find(UserName userName)
     {
-        var target = Store.Values.FirstOrDefault(user => userName.Equals(user.Name));
+        var target = Store.Values.FirstOrDefault(
+            user => userName.Equals(
+                user.ModelBuild(new UserDataModelBuilder()).Name
+            )
+        );
         
         if (target != null)
         {
@@ -25,7 +29,11 @@ class InMemoryUserRepository: IUserRepository
 
     public User Find(UserId userId)
     {
-        var target = Store.Values.FirstOrDefault(user => userId.Equals(user.Id));
+        var target = Store.Values.FirstOrDefault(
+            user => userId.Equals(
+                user.ModelBuild(new UserDataModelBuilder()).Id
+            )
+        );
         
         if (target != null)
         {
@@ -45,13 +53,17 @@ class InMemoryUserRepository: IUserRepository
 
     public void Save(User user)
     {
+        var userDataModel = user.ModelBuild(new UserDataModelBuilder());
+
         //保存時もディープコピーを行う
-        Store[user.Id] = Clone(user);
+        Store[userDataModel.Id] = Clone(user);
     }
     
     //ディープコピーを行うメソッド
     private User Clone(User user)
     {
-        return new User(user.Id, user.Name);
+        var userDataModel = user.ModelBuild(new UserDataModelBuilder());
+
+        return new User(userDataModel.Id, userDataModel.Name);
     }
 }

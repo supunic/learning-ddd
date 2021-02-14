@@ -2,7 +2,10 @@ public class UserRepository: IUserRepository
 {
     public void Save(User user)
     {
-        // 本来はSQL処理
+        var userDataModel = user.ModelBuild(new UserDataModelBuilder());
+
+        // 以後、userDataModelをORMに渡す
+        // userDataModelBuilderを使うことでUserのidやnameなど内部データも非公開にしたままにできる
     }
 
     public User Find(UserName userName)

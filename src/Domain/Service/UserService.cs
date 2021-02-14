@@ -9,7 +9,8 @@ public class UserService
 
     public bool Exists(User user)
     {
-        var duplicatedUser = userRepository.Find(user.Name);
+        var userDataModel  = user.ModelBuild(new UserDataModelBuilder());
+        var duplicatedUser = userRepository.Find(userDataModel.Name);
 
         return duplicatedUser != null;
     }
