@@ -10,6 +10,13 @@ public class UserRepository: IUserRepository
         // userDataModelBuilderを使うことでUserのidやnameなど内部データも非公開にしたままにできる
     }
 
+    public List<User> FindAll()
+    {
+        var userList = new List<User>();
+        userList.Add(new User(new UserId("findAllId"), new UserName("findAllName")));
+        return userList;
+    }
+
     public User Find(UserName userName)
     {
         // 本来はSQL処理

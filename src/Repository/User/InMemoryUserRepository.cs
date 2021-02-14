@@ -8,6 +8,11 @@ class InMemoryUserRepository: IUserRepository
 
     public Dictionary<UserId, User> Store { get; } = new Dictionary<UserId, User>();
 
+    public List<User> FindAll()
+    {
+        return Store.Values.ToList();
+    }
+
     public User Find(UserName userName)
     {
         var target = Store.Values.FirstOrDefault(
