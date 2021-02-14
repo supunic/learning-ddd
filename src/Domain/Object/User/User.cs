@@ -29,6 +29,12 @@ public class User
         MailAddress = mailAddress;
     }
 
+    public bool IsPremium()
+    {
+        // とりあえずメソッド作ったから一旦全てfalse
+        return false;
+    }
+
     // 以下はUserドメインの振る舞いとは異なるが、Userクラスの内部情報を隠蔽するために作成
     public UserDataModel ModelBuild(IUserNotification userDataModelBuilder) // UserDataModelをbuildして返す
     {

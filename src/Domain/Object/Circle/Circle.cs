@@ -19,7 +19,7 @@ public class Circle
     public CircleId Id { get; }
     public CircleName Name { get; private set; }
     public User Owner { get; private set; }
-    private List<UserId> Members;
+    public List<UserId> Members;
 
     public bool IsFull()
     {

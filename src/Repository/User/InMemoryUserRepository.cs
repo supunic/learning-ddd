@@ -46,6 +46,12 @@ class InMemoryUserRepository: IUserRepository
         }
     }
 
+    public List<User> Find(List<UserId> members)
+    {
+        // 本来は別処理
+        return new List<User>();
+    }
+
     public void Delete(User user)
     {
         //
