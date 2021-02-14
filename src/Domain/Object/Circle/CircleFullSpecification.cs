@@ -1,20 +1,10 @@
-using System.Linq;
-
-public class CircleFullSpecification
+public class CircleMembersFullSpecification
 {
-    private readonly IUserRepository userRepository;
-
-    public CircleFullSpecification(IUserRepository userRepository)
+    public bool IsSatisfiedBy(CircleMembers members)
     {
-        this.userRepository = userRepository;
-    }
-
-    public bool IsSatisfiedBy(Circle circle)
-    {
-        var users = userRepository.Find(circle.Members);
-        var premiumUserNumber = users.Count(user => user.IsPremium());
+        var premiumUserNumber = members.CountPremiumMembers(false);
         var circleUpperLimit = premiumUserNumber < 10 ? 30 : 50;
 
-        return circle.MembersCount() >= circleUpperLimit;
+        return members.CountMembers() >= circleUpperLimit;
     }
 }

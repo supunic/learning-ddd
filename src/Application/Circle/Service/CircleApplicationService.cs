@@ -61,12 +61,21 @@ public class CircleApplicationService
                 throw new Exception("ユーザーが見つかりませんでした。");
             }
 
-            var id     = new CircleName(command.CircleId);
-            var circle = circleRepository.Find(id);
+            var circleId = new CircleId(command.CircleId);
+            var circle   = circleRepository.Find(circleId);
 
             if (circle == null)
             {
                 throw new Exception("サークルが見つかりませんでした。");
+            }
+
+            var owner          = userRepository.Find(circle.Owner.Id);
+            var circleMembers  = new CircleMembers(circle.Id, owner, circle.Members);
+            var circleFullSpec = new CircleMembersFullSpecification();
+
+            if (circleFullSpec.IsSatisfiedBy(circleMembers))
+            {
+                throw new Exception("サークルが規定人数に達しています。");
             }
 
             circle.Join(member);
@@ -96,7 +105,7 @@ public class CircleApplicationService
                 throw new Exception("招待先ユーザーが見つかりませんでした。");
             }
 
-            var circleId = new CircleName(command.CircleId);
+            var circleId = new CircleId(command.CircleId);
             var circle   = circleRepository.Find(circleId);
 
             if (circle == null)
@@ -104,7 +113,11 @@ public class CircleApplicationService
                 throw new Exception("サークルが見つかりませんでした。");
             }
 
-            if (circle.IsFull())
+            var owner          = userRepository.Find(circle.Owner.Id);
+            var circleMembers  = new CircleMembers(circle.Id, owner, circle.Members);
+            var circleFullSpec = new CircleMembersFullSpecification();
+
+            if (circleFullSpec.IsSatisfiedBy(circleMembers))
             {
                 throw new Exception("サークルが規定人数に達しています。");
             }
