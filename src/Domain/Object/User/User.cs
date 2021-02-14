@@ -11,7 +11,7 @@ public class User
         Name = name;
     }
 
-    private readonly UserId Id;
+    public readonly UserId Id;
     private UserName Name;
     private UserMailAddress MailAddress;
 
