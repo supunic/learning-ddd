@@ -1,4 +1,4 @@
-public class CircleMembersFullSpecification
+public class CircleMembersFullSpecification: ISpecification<CircleMembers>
 {
     public bool IsSatisfiedBy(CircleMembers members)
     {
